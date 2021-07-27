@@ -9,8 +9,9 @@ const usersSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   created_dt: { type: Date, default: Date.now() },
+  workout_templates: [],
   activities: [{ type: Schema.Types.ObjectId, ref: "Activities" }], //Schema.Types.ObjectId
- });
+});
 
 userSchema.pre("save", async function (next) {
   const hash = await bcrypt.hash(this.password, 10);
